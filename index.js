@@ -1,5 +1,6 @@
 const express = require('express');
 const config = require('./config.js');
+const cors = require('./cors')
 
 const indexRoutes = require('./routes/index.js')
 
@@ -14,7 +15,14 @@ config().then(() => {
   });
 });
 
-app.use(cors())
+const corsConfig = {
+  origin: '',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
+}
+app.use(cors(corsConfig))
+app.options("", cors(corsConfig))
+
 app.use(express.json())
 app.use(indexRoutes)
 

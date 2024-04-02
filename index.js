@@ -1,5 +1,5 @@
 const express = require('express');
-const config = require('./config');
+const config = require('./config.js');
 
 const indexRoutes = require('./routes/index.js')
 
@@ -8,7 +8,7 @@ const app = express();
 // Panggil fungsi untuk koneksi ke MongoDB dari config.js
 config().then(() => {
   // Lakukan apa pun yang perlu dilakukan setelah koneksi berhasil
-  const port = process.env.PORT || 3000;
+  const port = 3000;
   app.listen(port, () => {
     console.log(`Server berjalan di http://localhost:${port}`);
   });

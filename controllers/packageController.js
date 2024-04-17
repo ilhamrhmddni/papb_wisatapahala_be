@@ -37,7 +37,7 @@ exports.createPackage = async (req, res) => {
 
 // Mengedit paket berdasarkan ID
 exports.editPackage = async (req, res) => {
-  const { name, price } = req.body;
+  const { nama, jenis, tanggal_kepulangan, tanggal_kepergian, harga, detail } = req.body;
 
   try {
     const package = await Package.findById(req.params.id);

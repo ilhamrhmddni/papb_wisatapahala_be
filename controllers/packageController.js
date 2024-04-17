@@ -40,43 +40,45 @@ exports.editPackage = async (req, res) => {
   const { nama, jenis, tanggal_kepulangan, tanggal_kepergian, harga, detail } = req.body;
 
   try {
-    const package = await Package.findById(req.params.id);
+    const updatedPackage = await Package.findByIdAndUpdate(
+      req.params.id,
+      { 
+        nama, 
+        jenis, 
+        tanggal_kepulangan, 
+        tanggal_kepergian, 
+        harga, 
+        detail 
+      },
+      { new: true }
+    );
 
-    if (!package) {
+    if (!updatedPackage) {
       return res.status(404).json({ message: 'Paket tidak ditemukan' });
     }
 
-    package.nama = nama;
-    package.jenis = jenis;
-    package.tanggal_kepulangan = tanggal_kepulangan;
-    package.tanggal_kepergian = tanggal_kepergian;
-    package.harga = harga;
-    package.detail = detail;
-
-    await package.save();
-    res.json(package);
+    res.json(updatedPackage);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');
   }
 };
 
-// Menghapus paket berdasarkan ID
 exports.deletePackage = async (req, res) => {
   try {
-    const package = await Package.findById(req.params.id);
+    const deletedPackage = await Package.findByIdAndDelete(req.params.id);
 
-    if (!package) {
+    if (!deletedPackage) {
       return res.status(404).json({ message: 'Paket tidak ditemukan' });
     }
 
-    await package.deleteOne();
     res.json({ message: 'Paket berhasil dihapus' });
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');
   }
 };
+
 
 exports.getPackageById = async (req, res) => {
     try {

@@ -27,7 +27,7 @@ exports.createPackage = async (req, res) => {
         detail
     });
 
-    await newPackage.save();
+    await newPackage.updateOne();
     res.json(newPackage);
   } catch (error) {
     console.error(error.message);

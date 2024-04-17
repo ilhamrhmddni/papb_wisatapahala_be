@@ -36,8 +36,14 @@ exports.createPackage = async (req, res) => {
 };
 
 // Mengedit paket berdasarkan ID
+// Edit paket berdasarkan ID
 exports.editPackage = async (req, res) => {
   const { nama, jenis, tanggal_kepulangan, tanggal_kepergian, harga, detail } = req.body;
+  
+  // Validasi ID
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return res.status(400).json({ message: 'ID tidak valid' });
+  }
 
   try {
     const package = await Package.findById(req.params.id);
@@ -61,8 +67,13 @@ exports.editPackage = async (req, res) => {
   }
 };
 
-// Menghapus paket berdasarkan ID
+// Hapus paket berdasarkan ID
 exports.deletePackage = async (req, res) => {
+  // Validasi ID
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return res.status(400).json({ message: 'ID tidak valid' });
+  }
+
   try {
     const package = await Package.findById(req.params.id);
 
@@ -77,6 +88,7 @@ exports.deletePackage = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
 
 exports.getPackageById = async (req, res) => {
     try {

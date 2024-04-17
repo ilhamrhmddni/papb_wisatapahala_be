@@ -40,8 +40,8 @@ exports.editPackage = async (req, res) => {
   const { nama, jenis, tanggal_kepulangan, tanggal_kepergian, harga, detail } = req.body;
 
   try {
-    const updatedPackage = await Package.findByIdAndUpdate(
-      req.params.id,
+    const updatedPackage = await Package.updateOne(
+      {_id: ObjectId(req.params.id)},
       { 
         nama, 
         jenis, 

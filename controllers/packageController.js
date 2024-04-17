@@ -46,11 +46,11 @@ exports.editPackage = async (req, res) => {
       return res.status(404).json({ message: 'Paket tidak ditemukan' });
     }
 
-    package.nama = name;
+    package.nama = nama;
     package.jenis = jenis;
     package.tanggal_kepulangan = tanggal_kepulangan;
     package.tanggal_kepergian = tanggal_kepergian;
-    package.harga = price;
+    package.harga = harga;
     package.detail = detail;
 
     await package.save();

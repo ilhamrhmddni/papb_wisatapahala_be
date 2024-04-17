@@ -5,7 +5,7 @@ const packageSchema = new mongoose.Schema({
   nama: String,
   jenis: String,
   tanggal_kepulangan: Date,
-  tanggal_berangkat: Date,
+  tanggal_kepergian: Date,
   harga: Number,
   detail: String 
 });

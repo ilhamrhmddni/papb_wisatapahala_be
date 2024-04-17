@@ -70,7 +70,7 @@ exports.deletePackage = async (req, res) => {
       return res.status(404).json({ message: 'Paket tidak ditemukan' });
     }
 
-    await package.remove();
+    await package.deleteOne();
     res.json({ message: 'Paket berhasil dihapus' });
   } catch (error) {
     console.error(error.message);

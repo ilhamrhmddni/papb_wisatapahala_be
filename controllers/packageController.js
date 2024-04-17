@@ -27,7 +27,7 @@ exports.createPackage = async (req, res) => {
         detail
     });
 
-    await newPackage.updateOne();
+    await newPackage.save();
     res.json(newPackage);
   } catch (error) {
     console.error(error.message);
@@ -40,7 +40,7 @@ exports.editPackage = async (req, res) => {
   const { nama, jenis, tanggal_kepulangan, tanggal_kepergian, harga, detail } = req.body;
 
   try {
-    const updatedPackage = await Package.findByIdAndUpdate(
+    const updatedPackage = await Package.findById(
       req.params.id,
       { 
         nama, 

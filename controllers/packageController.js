@@ -47,10 +47,10 @@ exports.editPackage = async (req, res) => {
     }
 
     package.nama = name;
-    package.jenis = price;
+    package.jenis = jenis;
     package.tanggal_kepulangan = tanggal_kepulangan;
     package.tanggal_kepergian = tanggal_kepergian;
-    package.harga = harga;
+    package.harga = price;
     package.detail = detail;
 
     await package.save();

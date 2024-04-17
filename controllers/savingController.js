@@ -7,7 +7,7 @@ exports.getAllSavings = async (req, res) => {
 const id = req.params.id
 
   try {
-    const savings = await Saving.find(id);
+    const savings = await Saving.findById(id);
     res.json(savings);
   } catch (error) {
     console.error(error.message);

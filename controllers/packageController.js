@@ -50,7 +50,7 @@ exports.editPackage = async (req, res) => {
         harga, 
         detail 
       },
-      { new: true }
+      { new: true, runValidators: true }
     );
 
     if (!updatedPackage) {
@@ -63,6 +63,7 @@ exports.editPackage = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
 
 exports.deletePackage = async (req, res) => {
   try {

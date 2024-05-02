@@ -3,17 +3,31 @@ const User = require('../models/user')
 
 // Mendapatkan semua tabungan
 exports.getAllSavings = async (req, res) => {
-
-const id = req.params.id
+  const userId = req.params.userId; // Ganti menjadi userId untuk mengklarifikasi bahwa ini adalah ID pengguna, bukan ID tabungan
 
   try {
-    const savings = await Saving.findById(id);
+    // Periksa apakah pengguna ada
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Cari tabungan yang dimiliki oleh pengguna tersebut
+    const savings = await Saving.find({ id_user: userId });  
+
+    // Periksa apakah ada tabungan untuk pengguna tersebut
+    if (savings.length === 0) {
+      return res.status(404).json({ message: "No savings found for this user" });
+    }
+
+    // Kirimkan tabungan yang ditemukan
     res.json(savings);
   } catch (error) {
     console.error(error.message);
     res.status(500).send('Server Error');
   }
 };
+
 
 // Membuat tabungan baru
 exports.createSaving = async (req, res) => {

@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const savingSchema = new mongoose.Schema({
   waktu: Date,
   nominal: Number,
-  id_user: [
+  id_user: (
     {type: mongoose.Schema.Types.ObjectId, ref : 'User'}
-  ]
+  )
 });
 
 // Membuat model 'User' berdasarkan skema 'userSchema'

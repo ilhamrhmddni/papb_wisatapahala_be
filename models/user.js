@@ -6,9 +6,9 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   is_admin: Boolean,
-  id_package: [
+  id_package: (
     {type: mongoose.Schema.Types.ObjectId, ref: 'Package', require: false}
-  ],
+),
 });
 
 // Membuat model 'User' berdasarkan skema 'userSchema'

@@ -85,10 +85,6 @@ exports.deleteSaving = async (req, res) => {
       return res.status(404).json({ message: 'Tabungan tidak ditemukan' });
     }
 
-    if (saving.user.toString() !== req.user.id) {
-      return res.status(401).json({ message: 'Akses ditolak' });
-    }
-
     await saving.deleteOne();
     res.json({ message: 'Tabungan berhasil dihapus' });
   } catch (error) {
